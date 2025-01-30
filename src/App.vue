@@ -1,18 +1,79 @@
-<template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
-</template>
-
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+  data() {
+    return {
+      filmName: '',
+      filmNames: [],
+      username: '',
+      comment: '',
+      comments: [],
+    }
+  },
+  methods: {
+    addFilmName() {
+      this.filmNames.push(this.filmName)
+      this.filmName = ''
+    },
+    addComment() {
+      this.comments.push({
+        username: this.username,
+        comment: this.comment,
+      })
+
+      this.username = ''
+      this.comment = ''
+    },
+  },
 }
 </script>
+
+<template>
+  <div class="main flex">
+    <div class="left">
+      <div class="title">
+        <h2>Фильмы</h2>
+      </div>
+      <ul class="films">
+        <li v-for="(film, idx) of filmNames" :key="idx">{{ film }}</li>
+      </ul>
+      <h3>Добавить фильм</h3>
+      <div class="wrap-input">
+        <label for="">Название фильма</label>
+        <input v-model="filmName" type="text" />
+      </div>
+      <div class="wrap-button">
+        <button v-on:click="addFilmName">Добавить</button>
+      </div>
+    </div>
+
+    <div class="rigth">
+      <h2>Отзывы</h2>
+      <ul class="comments">
+        <li v-for="(comment, idx) of comments" :key="idx">
+          <div>
+            <b>{{ comment.username }}</b>
+          </div>
+          <div>
+            <i>{{ comment.comment }}</i>
+          </div>
+        </li>
+      </ul>
+
+      <h3>Ваш комментарий:</h3>
+      <div class="wrap-input">
+        <label for="">Ваше имя</label>
+        <input v-model="username" type="text" />
+      </div>
+      <div class="wrap-input">
+        <label for="">Ваш отзыв</label>
+        <textarea v-model="comment" name="" id=""></textarea>
+      </div>
+      <div class="wrap-button">
+        <button v-on:click="addComment">Добавить</button>
+      </div>
+    </div>
+  </div>
+</template>
 
 <style>
 #app {
@@ -22,5 +83,55 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+@import url(https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,regular,500,600,700,800,900,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+
+* {
+  box-sizing: border-box;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex > * {
+  flex: 1;
+}
+
+div {
+  padding: 5px;
+  /* border: 1px solid #000; */
+}
+
+input,
+textarea,
+html {
+  font-family: 'Nunito Sans';
+  color: #234;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+ul {
+  list-style: none;
+}
+
+textarea {
+  resize: none;
+}
+
+.comments li i {
+  display: inline-block;
+  text-indent: 12px;
+  font-weight: 400;
+}
+
+.wrap-input input,
+.wrap-input textarea {
+  width: 100%;
+}
+
+.wrap-button {
+  /* text-align: center; */
 }
 </style>
