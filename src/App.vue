@@ -46,7 +46,7 @@ export default {
         <li v-for="(film, idx) of films" :key="idx">
           {{ film }}
 
-          <input type="radio" name="selectedFilm" />
+          <input v-model="newFilm" type="radio" name="selectedFilm" />
         </li>
       </ul>
       <h3>Добавить фильм</h3>
@@ -72,16 +72,14 @@ export default {
         </li>
       </ul>
 
-      <h3 v-if="editingFilm">
-        Редактировать комментарий к "{{ editingFilm }}"
-      </h3>
+      <h3>Комментарий к фильму</h3>
       <div class="wrap-input">
         <label for="">Ваше имя</label>
-        <input v-model="username" type="text" />
+        <input v-model="newCommentUsername" type="text" />
       </div>
       <div class="wrap-input">
         <label for="">Ваш отзыв</label>
-        <textarea v-model="editingText"></textarea>
+        <textarea v-model="newCommentText"></textarea>
       </div>
       <div class="wrap-button">
         <button v-on:click="addComment">Добавить</button>
