@@ -27,7 +27,7 @@ export default {
       this.comments.push({
         username: this.newCommentUsername,
         text: this.newCommentText,
-        film: this.newFilm,
+        film: this.selectedFilm,
       })
       this.newCommentUsername = ''
       this.newCommentText = ''
@@ -48,7 +48,7 @@ export default {
             v-model="newFilm"
             type="radio"
             name="selectedFilm"
-            value="film"
+            v-bind:value="film"
           />
           {{ film }}
         </li>
@@ -64,7 +64,7 @@ export default {
     </div>
 
     <div class="rigth">
-      <h2>Отзывы</h2>
+      <h2>Отзыв</h2>
       <ul class="comments">
         <li v-for="(comment, idx) of filmComments" :key="idx">
           <div>
