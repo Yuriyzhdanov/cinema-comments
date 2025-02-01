@@ -56,7 +56,7 @@ export default {
       <h3>Добавить фильм</h3>
       <div class="wrap-input">
         <label for="">Название фильма</label>
-        <input v-model="newFilm" type="text" />
+        <input v-model.trim="newFilm" type="text" />
       </div>
       <div class="wrap-button">
         <button v-on:click="addFilm">Добавить</button>
@@ -79,11 +79,11 @@ export default {
       <h3>Комментарий к фильму</h3>
       <div class="wrap-input">
         <label for="">Ваше имя</label>
-        <input v-model="newCommentUsername" type="text" />
+        <input v-model.trim="newCommentUsername" type="text" />
       </div>
       <div class="wrap-input">
         <label for="">Ваш отзыв к "{{ selectedFilm || '...' }}"</label>
-        <textarea v-model="newCommentText"></textarea>
+        <textarea v-model.trim="newCommentText"></textarea>
       </div>
       <div class="wrap-button">
         <button v-on:click="addComment">Добавить</button>
