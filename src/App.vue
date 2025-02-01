@@ -43,11 +43,7 @@ export default {
         <h2>Фильмы</h2>
       </div>
       <ul class="films">
-        <li
-          v-for="(film, idx) of filmNames"
-          :key="idx"
-          v-on:dblclick="editComment(film)"
-        >
+        <li v-for="(film, idx) of films" :key="idx">
           {{ film }}
 
           <input type="radio" name="selectedFilm" />
@@ -56,10 +52,10 @@ export default {
       <h3>Добавить фильм</h3>
       <div class="wrap-input">
         <label for="">Название фильма</label>
-        <input v-model="filmName" type="text" />
+        <input v-model="newFilm" type="text" />
       </div>
       <div class="wrap-button">
-        <button v-on:click="addFilmName">Добавить</button>
+        <button v-on:click="addFilm">Добавить</button>
       </div>
     </div>
 
