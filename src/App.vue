@@ -64,7 +64,7 @@ export default {
       </div>
     </div>
 
-    <div class="rigth">
+    <div v-if="selectedFilm" class="rigth">
       <h2>Отзыв</h2>
       <ul class="comments">
         <li v-for="(comment, idx) of commentsByFilm" :key="idx">
