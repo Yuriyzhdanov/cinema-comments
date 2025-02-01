@@ -1,3 +1,5 @@
+<style src="../css/main_style.css"></style>
+
 <script>
 export default {
   computed: {
@@ -53,6 +55,7 @@ export default {
           {{ film }}
         </li>
       </ul>
+
       <h3>Добавить фильм</h3>
       <div class="wrap-input">
         <label for="">Название фильма</label>
@@ -76,13 +79,13 @@ export default {
         </li>
       </ul>
 
-      <h3>Комментарий к фильму</h3>
+      <h3>Комментарий к фильму к {{ selectedFilm }}</h3>
       <div class="wrap-input">
         <label for="">Ваше имя</label>
         <input v-model.trim="newCommentUsername" type="text" />
       </div>
       <div class="wrap-input">
-        <label for="">Ваш отзыв к "{{ selectedFilm || '...' }}"</label>
+        <label for="">Ваш отзыв </label>
         <textarea v-model.trim="newCommentText"></textarea>
       </div>
       <div class="wrap-button">
@@ -91,64 +94,3 @@ export default {
     </div>
   </div>
 </template>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-@import url(https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,regular,500,600,700,800,900,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
-
-* {
-  box-sizing: border-box;
-}
-
-.flex {
-  display: flex;
-}
-
-.flex > * {
-  flex: 1;
-}
-
-div {
-  padding: 5px;
-  /* border: 1px solid #000; */
-}
-
-input,
-textarea,
-html {
-  font-family: 'Nunito Sans';
-  color: #234;
-  font-size: 18px;
-  font-weight: 600;
-}
-
-ul {
-  list-style: none;
-}
-
-textarea {
-  resize: none;
-}
-
-.comments li i {
-  display: inline-block;
-  text-indent: 12px;
-  font-weight: 400;
-}
-
-.wrap-input input,
-.wrap-input textarea {
-  width: 100%;
-}
-
-.wrap-button {
-  /* text-align: center; */
-}
-</style>
