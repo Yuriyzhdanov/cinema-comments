@@ -1,7 +1,7 @@
 <script>
 export default {
   computed: {
-    filmComments() {
+    commentsByFilm() {
       return this.comments.filter(comment => comment.film === this.selectedFilm)
     },
   },
@@ -67,7 +67,7 @@ export default {
     <div class="rigth">
       <h2>Отзыв</h2>
       <ul class="comments">
-        <li v-for="(comment, idx) of filmComments" :key="idx">
+        <li v-for="(comment, idx) of commentsByFilm" :key="idx">
           <div>
             <b>{{ comment.username }}</b>
           </div>
