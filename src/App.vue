@@ -1,5 +1,9 @@
 <script>
+import WidgetFilms from './components/WidgetFilms.vue'
+
 export default {
+  components: { WidgetFilms },
+
   computed: {
     commentsByFilm() {
       return this.comments.filter(comment => comment.film === this.selectedFilm)
@@ -42,17 +46,11 @@ export default {
       <div class="title">
         <h2>Фильмы</h2>
       </div>
-      <ul class="films">
-        <li v-for="(film, idx) of films" :key="idx">
-          <input
-            v-model="selectedFilm"
-            type="radio"
-            name="selectedFilm"
-            v-bind:value="film"
-          />
-          {{ film }}
-        </li>
-      </ul>
+
+      <widget-films
+        v-bind:films="films"
+        v-on:onSelectFilm="selectedFilm = $event"
+      ></widget-films>
 
       <h3>Добавить фильм</h3>
       <div class="wrap-input">
