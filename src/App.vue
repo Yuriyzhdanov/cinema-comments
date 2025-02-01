@@ -45,7 +45,7 @@ export default {
       <ul class="films">
         <li v-for="(film, idx) of films" :key="idx">
           <input
-            v-model="newFilm"
+            v-model="selectedFilm"
             type="radio"
             name="selectedFilm"
             v-bind:value="film"
@@ -82,7 +82,7 @@ export default {
         <input v-model="newCommentUsername" type="text" />
       </div>
       <div class="wrap-input">
-        <label for="">Ваш отзыв</label>
+        <label for="">Ваш отзыв к "{{ selectedFilm || '...' }}"</label>
         <textarea v-model="newCommentText"></textarea>
       </div>
       <div class="wrap-button">
