@@ -44,9 +44,13 @@ export default {
       </div>
       <ul class="films">
         <li v-for="(film, idx) of films" :key="idx">
+          <input
+            v-model="newFilm"
+            type="radio"
+            name="selectedFilm"
+            value="film"
+          />
           {{ film }}
-
-          <input v-model="newFilm" type="radio" name="selectedFilm" />
         </li>
       </ul>
       <h3>Добавить фильм</h3>
@@ -62,7 +66,7 @@ export default {
     <div class="rigth">
       <h2>Отзывы</h2>
       <ul class="comments">
-        <li v-for="(comment, idx) of comments" :key="idx">
+        <li v-for="(comment, idx) of filmComments" :key="idx">
           <div>
             <b>{{ comment.username }}</b>
           </div>
