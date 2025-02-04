@@ -9,11 +9,13 @@ export default {
     <li v-for="(film, idx) of films" :key="idx">
       <input
         v-bind:value="film"
-        v-on:input="$emit('onSelectFilm', film)"
+        v-on:input="$emit('onSelectFilm')"
         type="radio"
         name="selectedFilm"
+        v-bind:id="'film-' + idx"
       />
-      {{ film }}
+
+      <label v-bind:for="'film-' + idx">{{ film }}</label>
     </li>
   </ul>
 </template>

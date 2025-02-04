@@ -54,8 +54,8 @@ export default {
 
       <h3>Добавить фильм</h3>
       <div class="wrap-input">
-        <label for="">Название фильма</label>
-        <input v-model.trim="newFilm" type="text" />
+        <label for="newFilm">Название фильма</label>
+        <input v-model.trim="newFilm" type="text" id="newFilm" />
       </div>
       <div class="wrap-button">
         <button v-on:click="addFilm">Добавить</button>
