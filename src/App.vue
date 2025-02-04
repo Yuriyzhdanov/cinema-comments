@@ -62,7 +62,7 @@ export default {
       </div>
     </div>
 
-    <div v-if="selectedFilm" class="rigth">
+    <div v-if="selectedFilm" class="right">
       <h2>Отзыв</h2>
       <ul class="comments">
         <li v-for="(comment, idx) of commentsByFilm" :key="idx">
@@ -75,7 +75,8 @@ export default {
         </li>
       </ul>
 
-      <h3>Комментарий к фильму к {{ selectedFilm }}</h3>
+      <h3>Комментарий к фильму к</h3>
+      <span class="color-film-name">{{ selectedFilm }}</span>
       <div class="wrap-input">
         <label for="">Ваше имя</label>
         <input v-model.trim="newCommentUsername" type="text" />
@@ -158,6 +159,10 @@ h2 {
   width: 48%;
   box-sizing: border-box;
   margin-bottom: 20px;
+}
+
+.right h3 {
+  margin: 0;
 }
 
 /* div {
@@ -257,5 +262,8 @@ button:hover {
   opacity: 0.8;
 }
 
+.color-film-name {
+  color: fuchsia;
+}
 /* RADIO */
 </style>
