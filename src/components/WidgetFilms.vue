@@ -9,7 +9,7 @@ export default {
     <li v-for="(film, idx) of films" :key="idx">
       <input
         v-bind:value="film"
-        v-on:input="$emit('onSelectFilm')"
+        v-on:input="$emit('onSelectFilm', film)"
         type="radio"
         name="selectedFilm"
         v-bind:id="'film-' + idx"
