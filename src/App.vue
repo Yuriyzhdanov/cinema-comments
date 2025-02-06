@@ -1,9 +1,10 @@
 <script>
 import WidgetFilms from './components/WidgetFilms.vue'
 import WidgetComments from './components/WidgetComments.vue'
+import FilmAdder from './components/FilmAdder.vue'
 
 export default {
-  components: { WidgetFilms, WidgetComments },
+  components: { WidgetFilms, WidgetComments, FilmAdder },
 
   computed: {
     commentsByFilm() {
@@ -15,7 +16,6 @@ export default {
     return {
       comments: [],
       films: [],
-      newFilm: '',
       newCommentUsername: '',
       newCommentText: '',
       selectedFilm: '',
@@ -23,9 +23,8 @@ export default {
   },
 
   methods: {
-    addFilm() {
-      this.films.push(this.newFilm)
-      this.newFilm = ''
+    addFilm(newFilm) {
+      this.films.push(newFilm)
     },
 
     addComment() {
@@ -53,14 +52,7 @@ export default {
         v-on:onSelectFilm="selectedFilm = $event"
       ></widget-films>
 
-      <h3>Добавить фильм</h3>
-      <div class="wrap-input">
-        <label for="newFilm">Название фильма</label>
-        <input v-model.trim="newFilm" type="text" id="newFilm" />
-      </div>
-      <div class="wrap-button">
-        <button v-on:click="addFilm">Добавить</button>
-      </div>
+      <film-adder v-on:onAddNewFilm="addFilm($event)"> </film-adder>
     </div>
 
     <div v-if="selectedFilm" class="right">
