@@ -1,8 +1,9 @@
 <script>
 import WidgetFilms from './components/WidgetFilms.vue'
+import WidgetComments from './components/WidgetComments.vue'
 
 export default {
-  components: { WidgetFilms },
+  components: { WidgetFilms, WidgetComments },
 
   computed: {
     commentsByFilm() {
@@ -64,16 +65,9 @@ export default {
 
     <div v-if="selectedFilm" class="right">
       <h2>Отзыв</h2>
-      <ul class="comments">
-        <li v-for="(comment, idx) of commentsByFilm" :key="idx">
-          <div>
-            <b>{{ comment.username }}</b>
-          </div>
-          <div>
-            <i>{{ comment.text }}</i>
-          </div>
-        </li>
-      </ul>
+
+      <widget-comments v-bind:commentsByFilm="commentsByFilm">
+      </widget-comments>
 
       <h3>Комментарий к фильму к</h3>
       <span class="color-film-name">{{ selectedFilm }}</span>

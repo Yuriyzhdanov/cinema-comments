@@ -1,7 +1,7 @@
 <script>
 export default {
   props: ['films'],
-  emit: ['onSelectFilm'],
+  emits: ['onSelectFilm'],
 }
 </script>
 <template>
