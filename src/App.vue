@@ -2,9 +2,10 @@
 import WidgetFilms from './components/WidgetFilms.vue'
 import WidgetComments from './components/WidgetComments.vue'
 import FilmAdder from './components/FilmAdder.vue'
+import CommentsAdder from './components/CommentsAdder.vue'
 
 export default {
-  components: { WidgetFilms, WidgetComments, FilmAdder },
+  components: { WidgetFilms, WidgetComments, FilmAdder, CommentsAdder },
 
   computed: {
     commentsByFilm() {
@@ -16,8 +17,6 @@ export default {
     return {
       comments: [],
       films: [],
-      newCommentUsername: '',
-      newCommentText: '',
       selectedFilm: '',
     }
   },
@@ -29,12 +28,10 @@ export default {
 
     addComment() {
       this.comments.push({
-        username: this.newCommentUsername,
-        text: this.newCommentText,
-        film: this.selectedFilm,
+        username: newCommentUsername,
+        text: newCommentText,
+        film: selectedFilm,
       })
-      this.newCommentUsername = ''
-      this.newCommentText = ''
     },
   },
 }
@@ -61,19 +58,10 @@ export default {
       <widget-comments v-bind:commentsByFilm="commentsByFilm">
       </widget-comments>
 
-      <h3>Комментарий к фильму к</h3>
-      <span class="color-film-name">{{ selectedFilm }}</span>
-      <div class="wrap-input">
-        <label for="">Ваше имя</label>
-        <input v-model.trim="newCommentUsername" type="text" />
-      </div>
-      <div class="wrap-input">
-        <label for="">Ваш отзыв </label>
-        <textarea v-model.trim="newCommentText"></textarea>
-      </div>
-      <div class="wrap-button">
-        <button v-on:click="addComment">Добавить</button>
-      </div>
+      <comments-adder
+        v-bind:selectedFilm="selectedFilm"
+        v-on:onAddComment="addComment"
+      ></comments-adder>
     </div>
   </div>
 </template>
