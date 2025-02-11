@@ -1,38 +1,14 @@
 <script>
 import WidgetFilms from './components/WidgetFilms.vue'
 import WidgetComments from './components/WidgetComments.vue'
-import FilmAdder from './components/FilmAdder.vue'
-import CommentsAdder from './components/CommentsAdder.vue'
 
 export default {
-  components: { WidgetFilms, WidgetComments, FilmAdder, CommentsAdder },
-
-  computed: {
-    commentsByFilm() {
-      return this.comments.filter(comment => comment.film === this.selectedFilm)
-    },
-  },
+  components: { WidgetFilms, WidgetComments },
 
   data() {
     return {
-      comments: [],
-      films: [],
       selectedFilm: '',
     }
-  },
-
-  methods: {
-    addFilm(newFilm) {
-      this.films.push(newFilm)
-    },
-
-    addComment() {
-      this.comments.push({
-        username: newCommentUsername,
-        text: newCommentText,
-        film: selectedFilm,
-      })
-    },
   },
 }
 </script>
@@ -40,28 +16,11 @@ export default {
 <template>
   <div class="main flex">
     <div class="left">
-      <div class="title">
-        <h2>Фильмы</h2>
-      </div>
-
-      <widget-films
-        v-bind:films="films"
-        v-on:onSelectFilm="selectedFilm = $event"
-      ></widget-films>
-
-      <film-adder v-on:onAddNewFilm="addFilm($event)"> </film-adder>
+      <widget-films v-on:onSelectFilm="selectedFilm = $event"></widget-films>
     </div>
 
     <div v-if="selectedFilm" class="right">
-      <h2>Отзыв</h2>
-
-      <widget-comments v-bind:commentsByFilm="commentsByFilm">
-      </widget-comments>
-
-      <comments-adder
-        v-bind:selectedFilm="selectedFilm"
-        v-on:onAddComment="addComment"
-      ></comments-adder>
+      <widget-comments v-bind:selectedFilm="selectedFilm"></widget-comments>
     </div>
   </div>
 </template>
