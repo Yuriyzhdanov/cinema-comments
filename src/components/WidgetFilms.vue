@@ -1,14 +1,16 @@
 <script>
-export default {
-  emits: ['onSelectFilm'],
+import UiFilms from './UiFilms.vue'
 
+export default {
+  components: { UiFilms },
+
+  emits: ['onSelectFilm'],
   data() {
     return {
       films: [],
       newFilm: '',
     }
   },
-
   methods: {
     addFilm() {
       this.films.push(this.newFilm)
@@ -18,28 +20,30 @@ export default {
 }
 </script>
 <template>
-  <div class="title">
-    <h2>Фильмы</h2>
-  </div>
-  <ul class="films">
-    <li v-for="(film, idx) of films" :key="idx">
-      <input
-        v-bind:value="film"
-        v-on:input="$emit('onSelectFilm', film)"
-        type="radio"
-        name="selectedFilm"
-        v-bind:id="'film-' + idx"
-      />
-      <label v-bind:for="'film-' + idx">{{ film }}</label>
-    </li>
-  </ul>
-  <h3>Добавить фильм</h3>
-  <div class="wrap-input">
-    <label for="newFilm">Название фильма</label>
-    <input v-model.trim="newFilm" type="text" id="newFilm" />
-  </div>
-  <div class="wrap-button">
-    <button v-on:click="addFilm">Добавить</button>
+  <div>
+    <ui-films></ui-films>
+    <ul class="films">
+      <li v-for="(film, idx) of films" :key="idx">
+        <input
+          v-bind:value="film"
+          v-on:input="$emit('onSelectFilm', film)"
+          type="radio"
+          name="selectedFilm"
+          v-bind:id="'film-' + idx"
+        />
+        <label v-bind:for="'film-' + idx">{{ film }}</label>
+      </li>
+    </ul>
+    <div>
+      <h3>Добавить фильм</h3>
+      <div class="wrap-input">
+        <label for="newFilm">Название фильма</label>
+        <input v-model.trim="newFilm" type="text" id="newFilm" />
+      </div>
+      <div class="wrap-button">
+        <button v-on:click="addFilm">Добавить</button>
+      </div>
+    </div>
   </div>
 </template>
 
