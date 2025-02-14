@@ -1,20 +1,20 @@
 <script>
+import AdderFilm from './AdderFilm.vue'
 import UiFilmsTitle from './UiFilmsTitle.vue'
 
 export default {
-  components: { UiFilmsTitle },
+  components: { UiFilmsTitle, AdderFilm },
 
   emits: ['onSelectFilm'],
   data() {
     return {
       films: [],
-      newFilm: '',
     }
   },
+
   methods: {
-    addFilm() {
-      this.films.push(this.newFilm)
-      this.newFilm = ''
+    addFilm(film) {
+      this.films.push(film)
     },
   },
 }
@@ -34,16 +34,7 @@ export default {
         <label v-bind:for="'film-' + idx">{{ film }}</label>
       </li>
     </ul>
-    <div>
-      <h3>Добавить фильм</h3>
-      <div class="wrap-input">
-        <label for="newFilm">Название фильма</label>
-        <input v-model.trim="newFilm" type="text" id="newFilm" />
-      </div>
-      <div class="wrap-button">
-        <button v-on:click="addFilm">Добавить</button>
-      </div>
-    </div>
+    <adder-film v-on:onAddFilm="addFilm"></adder-film>
   </div>
 </template>
 
