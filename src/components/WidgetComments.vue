@@ -1,8 +1,8 @@
 <script>
-import UiComment from './UiComment.vue'
+import UiCommentTitle from './UiCommentTitle.vue'
 
 export default {
-  compomemts: { UiComment },
+  components: { UiCommentTitle },
 
   props: ['selectedFilm'],
 
@@ -39,7 +39,7 @@ export default {
 
 <template>
   <div>
-    <ui-comment></ui-comment>
+    <ui-comment-title></ui-comment-title>
     <ul class="comments">
       <li v-for="(comment, idx) of commentsByFilm" :key="idx">
         <div>

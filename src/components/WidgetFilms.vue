@@ -1,8 +1,8 @@
 <script>
-import UiFilms from './UiFilms.vue'
+import UiFilmsTitle from './UiFilmsTitle.vue'
 
 export default {
-  components: { UiFilms },
+  components: { UiFilmsTitle },
 
   emits: ['onSelectFilm'],
   data() {
@@ -21,7 +21,7 @@ export default {
 </script>
 <template>
   <div>
-    <ui-films></ui-films>
+    <ui-films-title></ui-films-title>
     <ul class="films">
       <li v-for="(film, idx) of films" :key="idx">
         <input
