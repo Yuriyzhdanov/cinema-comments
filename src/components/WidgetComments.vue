@@ -1,8 +1,9 @@
 <script>
+import AdderComment from './AdderComment.vue'
 import UiCommentTitle from './UiCommentTitle.vue'
 
 export default {
-  components: { UiCommentTitle },
+  components: { UiCommentTitle, AdderComment },
 
   props: ['selectedFilm'],
 
@@ -15,23 +16,12 @@ export default {
   data() {
     return {
       comments: [],
-      newComment: {
-        username: '',
-        text: '',
-        film: '',
-      },
     }
   },
 
   methods: {
-    addComment() {
-      this.newComment.film = this.selectedFilm
-      this.comments.push({ ...this.newComment })
-      this.newComment = {
-        username: '',
-        text: '',
-        film: '',
-      }
+    addComment(comment) {
+      this.comments.push({ ...comment })
     },
   },
 }
@@ -40,6 +30,7 @@ export default {
 <template>
   <div>
     <ui-comment-title></ui-comment-title>
+
     <ul class="comments">
       <li v-for="(comment, idx) of commentsByFilm" :key="idx">
         <div>
@@ -50,18 +41,9 @@ export default {
         </div>
       </li>
     </ul>
-    <h3>Комментарий к фильму</h3>
-    <span class="color-film-name">{{ selectedFilm }}</span>
-    <div class="wrap-input">
-      <label for="">Ваше имя</label>
-      <input v-model.trim="newComment.username" type="text" />
-    </div>
-    <div class="wrap-input">
-      <label for="">Ваш отзыв </label>
-      <textarea v-model.trim="newComment.text"></textarea>
-    </div>
-    <div class="wrap-button">
-      <button v-on:click="addComment">Добавить</button>
-    </div>
+    <adder-comment
+      v-bind:selectedFilm="selectedFilm"
+      v-on:onAddComment="addComment"
+    ></adder-comment>
   </div>
 </template>
