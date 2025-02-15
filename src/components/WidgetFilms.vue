@@ -4,7 +4,7 @@ import UiFilmsTitle from './UiFilmsTitle.vue'
 
 export default {
   components: { UiFilmsTitle, AdderFilm },
-
+  props: ['selectedFilm'],
   emits: ['onSelectFilm'],
   data() {
     return {
@@ -14,7 +14,11 @@ export default {
 
   methods: {
     addFilm(film) {
-      this.films.push(film)
+      if (!this.films.includes(film)) {
+        this.films.push(film)
+      } else {
+        alert('Фильм уже добавлен', film)
+      }
     },
   },
 }

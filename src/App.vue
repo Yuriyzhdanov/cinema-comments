@@ -16,7 +16,10 @@ export default {
 <template>
   <div class="main flex">
     <div class="left">
-      <widget-films v-on:onSelectFilm="selectedFilm = $event"></widget-films>
+      <widget-films
+        v-bind:selectedFilm="selectedFilm"
+        v-on:onSelectFilm="selectedFilm = $event"
+      ></widget-films>
     </div>
 
     <div v-if="selectedFilm" class="right">
