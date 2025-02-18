@@ -3,14 +3,20 @@ import { ref } from 'vue'
 
 const sparkles = ref([])
 
+const randomColor = () => {
+  const colors = ['#ff4d4d', '#ffb84d', '#4dff4d', '#4db8ff', '#b84dff']
+  return colors[Math.floor(Math.random() * colors.length)]
+}
+
 const addSparkle = () => {
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 10; i++) {
     setTimeout(() => {
       sparkles.value.push({
         id: Date.now(),
         x: (Math.random() - 0.5) * 200,
         y: (Math.random() - 0.5) * 200,
         size: 5,
+        color: randomColor(),
       })
     }, 200)
   }
@@ -18,6 +24,7 @@ const addSparkle = () => {
   //   sparkles.value?.shift()
   // }, 200)
 }
+defineExpose({ addSparkle })
 </script>
 
 <template>
@@ -34,6 +41,7 @@ const addSparkle = () => {
           left: sparkle.x + 'px',
           width: sparkle.size + 'px',
           height: sparkle.size + 'px',
+          backgroundColor: sparkle.color,
         }"
       ></div>
     </div>
@@ -61,6 +69,9 @@ const addSparkle = () => {
   position: absolute;
   left: 0;
   top: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
 }
 
 .typing-effect {
