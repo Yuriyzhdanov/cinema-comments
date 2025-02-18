@@ -1,6 +1,7 @@
 <script>
 import WidgetFilms from './components/WidgetFilms.vue'
 import WidgetComments from './components/WidgetComments.vue'
+import Sparkles from './components/Sparkles.vue'
 
 export default {
   components: { WidgetFilms, WidgetComments },
