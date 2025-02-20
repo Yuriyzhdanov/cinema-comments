@@ -1,10 +1,9 @@
 <script>
 import WidgetFilms from './components/WidgetFilms.vue'
 import WidgetComments from './components/WidgetComments.vue'
-import Sparkles from './components/InputSparkles.vue'
 
 export default {
-  components: { WidgetFilms, WidgetComments, Sparkles },
+  components: { WidgetFilms, WidgetComments },
 
   data() {
     return {
@@ -15,7 +14,6 @@ export default {
 </script>
 
 <template>
-  <Sparkles></Sparkles>
   <div class="main flex">
     <div class="left">
       <widget-films

@@ -1,50 +1,28 @@
 <script setup>
-import { ref } from 'vue'
+import { defineProps } from 'vue'
 
-const sparkles = ref([])
-
-const randomColor = () => {
-  const colors = ['#ff4d4d', '#ffb84d', '#4dff4d', '#4db8ff', '#b84dff']
-  return colors[Math.floor(Math.random() * colors.length)]
-}
-
-const addSparkle = () => {
-  for (let i = 0; i < 10; i++) {
-    setTimeout(() => {
-      sparkles.value.push({
-        id: Date.now(),
-        x: (Math.random() - 0.5) * 200,
-        y: (Math.random() - 0.5) * 200,
-        size: 5,
-        color: randomColor(),
-      })
-    }, 200)
-  }
-  // setInterval(() => {
-  //   sparkles.value?.shift()
-  // }, 200)
-}
-defineExpose({ addSparkle })
+defineProps({
+  sparkles: Array,
+})
 </script>
 
 <template>
-  <div class="wrap-button">
-    <button @click="addSparkle">PUSH</button>
-    <div class="sparkle-container">
-      <div
-        v-for="sparkle in sparkles"
-        :key="sparkle.id"
-        class="typing-effect"
-        style="background-color: crimson"
-        :style="{
-          top: sparkle.y + 'px',
-          left: sparkle.x + 'px',
-          width: sparkle.size + 'px',
-          height: sparkle.size + 'px',
-          backgroundColor: sparkle.color,
-        }"
-      ></div>
-    </div>
+  <div class="sparkle-container">
+    <div
+      v-for="sparkle in sparkles"
+      :key="sparkle.id"
+      class="typing-effect"
+      :style="{
+        position: 'absolute',
+        top: sparkle.y + 'px',
+        left: sparkle.x + 'px',
+        width: sparkle.size + 'px',
+        height: sparkle.size + 'px',
+        backgroundColor: sparkle.color,
+        borderRadius: '50%',
+        opacity: 0.8,
+      }"
+    ></div>
   </div>
 </template>
 
@@ -66,11 +44,9 @@ defineExpose({ addSparkle })
 }
 
 .sparkle-container {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
+  position: relative;
+  width: 100%;
+  height: 50px;
   pointer-events: none;
 }
 
